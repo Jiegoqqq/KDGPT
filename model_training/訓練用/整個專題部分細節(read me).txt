@@ -1,0 +1,18 @@
+1.在此專題內的random seed(random state)除了在model、upsampling部分上使用42之外(kold.py內的模型設定上)，其餘流程、程式碼皆使用30
+2.處理流程:
+	step 1. 先使用data_preprocessing_combine.py將正負資料集做合併，在此檔案內需做以下流程合併檔案:
+		  step 1.1 先填補整個檔案的空值(如果要填補的 依照規則有值)
+		  step 1.2 從總檔案中抽取需要的欄位
+		  step 1.3 若需要的欄位內有病患經過步驟一之後依然有空值，則丟棄病患
+		    在經過上述流程後，並沒有改變到欄位的名稱以及資料內容，會於後續作處理
+
+	step 2. 使用data_preprocessing_split_kfold.py做kfold切分，這裡使用到sklearn內的split函式(可再優化)，流程如下:
+		  step 2.1 先將欄位名稱中的特殊符號(非字元)的部分轉為英文字母p(可自由選擇要轉成哪個字母，不影響後續)
+		  step 2.2 使用檔案內的split_kfold可將其分為五份的validation以及相對應的training set
+
+	step 3. 使用z_score.py將檔案內的資料轉為z_score
+		  step 3.1 先將資料引入，並且存為新的dataframe(用以後續將原資料內已經處理過z score的欄位做取代)
+		  step 3.2 使用檔案內的z_score_test函示，可以得到z score轉化完後的檔案，以及各欄位的mean、std
+		  step 3.3 將原先已經z score處理完的欄位覆蓋回經過兩次z score處理的部分
+          
+* 註解:Under 7 的資料在K-fold,K-fold_with mocyte兩資料夾內，是由K-fold所有的年齡下再篩選出小於七歲結果

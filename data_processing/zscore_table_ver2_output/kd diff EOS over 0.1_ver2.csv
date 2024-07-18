@@ -1,0 +1,1 @@
+ID,性別,age (day),age (month),age (year),WBC (1000),RBC,Hemoglobin,Hematocrit,MCV,MCH,MCHC,Platelets,Seg (%),Lym (%),monocyte (%),eosinophil (%),basophil (%),Band (%),Seg count ,Lym count ,monocyte count ,eosinophil count ,basophil count ,Band count ,AST/GOT,ALT/GPT,CRP,HB z score,EOS z score,PLT z score,count_HB_z,count_eos_z,count_plt_z,hb_diff,eos_diff,plt_diff
